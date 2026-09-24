@@ -74,7 +74,7 @@ function Menu() {
       <h2>Our menu</h2>
 
       {numPizzas > 0 ? (
-        <React.Fragment>
+        <>
           <p>
             Authentic Italian cuisine. 6 creative dishes to choose from. All
             from our stone even, all organic, all delicious.
@@ -85,7 +85,7 @@ function Menu() {
               <Pizza pizzaObj={pizza} key={pizza.name} />
             ))}
           </ul>
-        </React.Fragment>
+        </>
       ) : (
         <p>We're still working on our menu. please com back later:</p>
       )}
@@ -108,18 +108,15 @@ function Menu() {
 }
 
 function Pizza({ pizzaObj }) {
-  // if (pizzaObj.soldOut) return null;
+  if (pizzaObj.soldOut) return null;
 
   return (
-    <li className={`pizza${pizzaObj.soldOut ? "sold-out" : ""}`}>
+    <li className="pizza">
       <img src={pizzaObj.photoName} alt={pizzaObj.name}></img>
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
-        <span>
-          {pizzaObj.soldOut ? " " : "$"}
-          {pizzaObj.soldOut ? "Sold Out" : pizzaObj.price}
-        </span>
+        <span>${pizzaObj.price}</span>
       </div>
     </li>
   );
